@@ -98,13 +98,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Yessbank Release</name>
-	      <url>http://172.31.33.83:9081/yessbank/repository/yessbank-release/</url>
+	      <url>http://172.31.33.83:9091/yessbank/repository/yessbank-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Yessbank Snapshot </name>
-	      <url>http://172.31.33.83:9081/yessbank/repository/yessbank-snapshot/</url>
+	      <url>http://172.31.33.83:9091/yessbank/repository/yessbank-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
