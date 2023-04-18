@@ -10,7 +10,7 @@ node
         stage('Checkout Code')
         {
 	    
-	    sendSlackNotification("STARTED")
+	    sendSlackNotification('STARTED')
             git branch: 'development', credentialsId: '624e16dd-5f9b-4069-9658-ab6c227a77bd', url: 'https://github.com/YESSBank/maven-web-application.git'
         } //closing checkoutcode
        stage('Build')
@@ -51,7 +51,7 @@ node
 def sendSlackNotification(String buildStatus = 'STARTED') 
 {
   // build status of null means successful
-  buildStatus =  buildStatus ?: 'SUCCESS'
+  buildStatus =  buildStatus ?: 'SUCCESSFUL'
 
   // Default values
   def colorName = 'RED'
