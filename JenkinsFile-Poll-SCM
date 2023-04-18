@@ -2,8 +2,9 @@ node
 {
     echo "The job name is: ${env.JOB_NAME}"
     echo "The build.no is: ${env.BUILD_NUMBER}"
-    def mavenHome = tool name: "maven3.9.1"
     properties([buildDiscarder(logRotator(artifactNumToKeepStr: '5', numToKeepStr: '5')), pipelineTriggers([pollSCM('* * * * *')])])
+    def mavenHome = tool name: "maven3.9.1"
+    
     try 
     {
         stage('Checkout Code')
@@ -29,10 +30,11 @@ node
         {
             sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.37.202:/opt/apache-tomcat-9.0.73/webapps/"
         }
-    }//closing Deploy Application */
+    }//closing Deploy Application 
+    */
        
  } //try close
-  catch (e) 
+  catch(e) 
 	{
     // If there was an exception thrown, the build failed
     currentBuild.result = "FAILURE"
@@ -48,7 +50,7 @@ node
 def sendSlackNotification(String buildStatus = 'STARTED') 
 {
   // build status of null means successful
-  buildStatus =  buildStatus ?: 'SUCCESSFUL'
+  buildStatus =  buildStatus ?: 'SUCCESS'
 
   // Default values
   def colorName = 'RED'
@@ -60,7 +62,7 @@ def sendSlackNotification(String buildStatus = 'STARTED')
   if (buildStatus == 'STARTED') {
     color = 'YELLOW'
     colorCode = '#FFFF00'
-  } else if (buildStatus == 'SUCCESSFUL') {
+  } else if (buildStatus == 'SUCCESS') {
     color = 'GREEN'
     colorCode = '#00FF00'
   } else {
@@ -69,5 +71,5 @@ def sendSlackNotification(String buildStatus = 'STARTED')
   }
 
   // Send notifications
-  slackSend (color: colorCode, message: summary)
+  slackSend (color: colorCode, message: summary, channel: '#slack-notification')
 }
