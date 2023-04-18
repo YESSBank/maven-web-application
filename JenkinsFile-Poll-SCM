@@ -51,7 +51,7 @@ node
 def sendSlackNotification(String buildStatus = 'STARTED') 
 {
   // build status of null means successful
-  buildStatus =  buildStatus ?: 'SUCCESSFUL'
+  buildStatus =  buildStatus ?: 'SUCCESS'
 
   // Default values
   def colorName = 'RED'
@@ -72,5 +72,5 @@ def sendSlackNotification(String buildStatus = 'STARTED')
   }
 
   // Send notifications
-  slackSend (color: colorCode, channel: '#slack-notification')
+  slackSend (color: colorCode, message: summary, channel: '#slack-notification')
 }
