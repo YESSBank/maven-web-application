@@ -72,5 +72,5 @@ def sendSlackNotification(String buildStatus = 'STARTED')
   }
 
   // Send notifications
-  slackSend (color: colorCode, message: summary, channel: '#slack-notification')
+ slackSend channel: '#slack-notification', message: 'summary', teamDomain: 'jenkinsJob', tokenCredentialId: '6afc41c9-d7cf-4071-9451-cb832a9f5515', username: 'gowdapramila60'
 }
